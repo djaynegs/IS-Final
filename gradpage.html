@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="gradstyles.css">
+  <link rel="stylesheet" type="text/css" href="common.css">
+
+</head>
+
+<body>
+  <div class="header">
+    <h1>Grad Experience</h1>
+  </div>
+  <nav>
+    <a href="index.html">Travels</a>
+    <a class="active" href="#">Grad Experience</a>
+    <a href="webapp.html">Wordle</a>
+  </nav>
+
+  <!-- Tab panes -->
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="tab1Id" role="tabpanel">
+
+    </div>
+    <div class="tab-pane fade" id="tab2Id" role="tabpanel"></div>
+    <div class="tab-pane fade" id="tab3Id" role="tabpanel"></div>
+    <div class="tab-pane fade" id="tab4Id" role="tabpanel"></div>
+    <div class="tab-pane fade" id="tab5Id" role="tabpanel"></div>
+  </div>
+
+  <!-- (Optional) - Place this js code after initializing bootstrap.min.js or bootstrap.bundle.min.js -->
+  <script>
+    var triggerEl = document.querySelector("#navId a");
+    bootstrap.Tab.getInstance(triggerEl).show(); // Select tab by name
+  </script>
+  <br>
+  <section class="resume-container">
+    <header>
+      <h1>Danielle Saunders</h1>
+      <address>
+        Provo, UT | danielle@yahoo.com | (555) 123-4567
+      </address>
+    </header>
+    <section>
+      <h2>Professional Summary</h2>
+      <p>MPA Candidate at BYU. Experience in Program Evaluation, Nonprofit Management, and Quantitative Decision
+        Analysis. Social Impact Evaluation Specialist.</p>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <ul>
+        <li>
+          <strong>Bachelor's of Arts, International Relations</strong> – Brigham Young University,
+          <time datetime="2024">2024</time>
+        <li><strong>Master's of Public Administration</strong> – Brigham Young University,
+          <time datetime="2026">2026</time>
+        </li>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Work Experience</h2>
+      <ul>
+        <li>
+          <strong>Applications and Recruitment Intern</strong> – One Refugee
+          <br>
+          <time datetime="2024-11">November 2024</time> – Present
+          <ul>
+            <li>Analyzed and vetted nearly 300 applications for One Refugee’s scholarship program to select students
+              that met program
+              standards</li>
+            <li>Presented on scholarship program at several collaborative events and conferences to increase recruitment
+              of applicants and
+              establish relationships with local nonprofit organizations</li>
+          </ul>
+        <li>
+          <strong>Research Assistant</strong> – BYU Ballard Center for Social Impact
+          <br>
+          <time datetime="2024-05">May 2024</time> – Sept 2024
+          <ul>
+            <li>Composed an in-depth research paper on the Bolivian governmental structure for the Andean Region Lab to
+              aid their
+              understanding of the policy process on water resource management (WRM) issues in the country</li>
+            <li>Compiled a list of dozens of Bolivian policies on WRM and compared them to other countries’ current
+              policies and practices
+              to find solutions to severe droughts in rural areas</li>
+          </ul>
+        <li>
+          <strong>Social Impact Analyst-Intern</strong> – NASA
+          <br>
+          <time datetime="2023-09">Sept 2023</time> – Jan 2024
+          <ul>
+            <li>Engaged in a dynamic partnership with NASA Servir, Rally Feminino de Tecnologias (RAC), and BYU Civil
+              Engineering to
+              create training for 40+ women to aid water resource management and natural disaster relief in rural
+              Central America</li>
+            <li>Spearheaded development of a transformative 3-part social impact assessment framework poised for
+              widespread adoption
+              in training programs spanning vulnerable regions worldwide</li>
+            <li>Analyzed and coded survey data from 4 surveys to measure adoption and application of NASA's technology
+            </li>
+        </li>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Volunteer Experience</h2>
+      <ul>
+        <li>
+          <strong>Prospect Researcher/Donor Database Coordinator</strong> – No More A Stranger
+          <br>
+          <time datetime="2024-09">Sept 2024</time> – Jan 2025
+          <ul>
+            <li>Prospected 5 major donors for the Executive Director to make targeted requests for future donations</li>
+            <li>Secured a $22,500 grant by researching and applying to relevant grants on GrantStation</li>
+          </ul>
+        <li>
+          <strong>Refugee Mentor/ESL Teacher</strong> – Lutheran Family Services
+          <br>
+          <time datetime="2018-08">Aug 2018</time> – Aug 2023
+          <ul>
+            <li>Guided 2 families from Afghanistan and Sudan to cultural assimilation; Engaged in workshops to sharpen
+              intercultural skills</li>
+            <li>Advised refugee families on employment and education decisions by providing advice on higher education
+              and resumes</li>
+            <li>Met with leaders of 2 non-profits, such as LDS Charities, to discuss improvement of refugee efforts in
+              the Omaha area</li>
+          </ul>
+    </section>
+  </section>
+
+  <hr class="section-break">
+
+  <!-- New Section: Career Path, Experience, Anticipated Contributions -->
+  <section class="growth-section">
+    <div class="resume-section career-path">
+      <h2>Career Path</h2>
+      <p>
+        Out of all of the emphases I could pick in this program, I am most drawn to nonprofit management. As I have
+        taken classes and gotten more experience in this subject matter, I have realized that I would like to do this
+        full-time when I graduate. After graduation, I hope to get a job at an NGO and continue to make an impact in the
+        lives of vulnerable people around the world.
+      </p>
+    </div>
+
+    <div class="resume-section experience-field">
+      <h2>Internship at One Refugee</h2>
+      <p>
+        I started interning at One Refugee in November to gain experience in the nonprofit sector. I am very passionate
+        about helping connect refugees to resources that can help them, so this experience brought together a lot of my
+        skills and interests. In April, I extended my internship through the summer. I'm excited to continue working for
+        this outstanding organization!
+      </p>
+    </div>
+
+    <div class="resume-section anticipated-contributions">
+      <h2>Anticipated Contributions</h2>
+      <p>
+        After my first semester in the MPA program, I decided to minor in Information Systems. I believe my technical
+        skills will be valuable to whatever nonprofit organization I work for in the future, as many struggle with
+        creating aesthetic websites and automating tasks.
+      </p>
+    </div>
+  </section>
+
+
+</body>
+
+</html>

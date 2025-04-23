@@ -3,72 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <title>World Travels</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="common.css">
 </head>
 <body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
-    <!-- Nav tabs -->
-    <ul
-        class="nav nav-tabs"
-        id="navId"
-        role="tablist"
-    >
-        <li class="nav-item">
-            <a
-                href="#tab1Id"
-                class="nav-link active"
-                data-bs-toggle="tab"
-                aria-current="page"
-                >Active</a
-            >
-        </li>
-        <li class="nav-item dropdown">
-            <a
-                class="nav-link dropdown-toggle"
-                data-bs-toggle="dropdown"
-                href="#"
-                role="button"
-                aria-haspopup="true"
-                aria-expanded="false"
-                >Dropdown</a
-            >
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="#tab2Id">Action</a>
-                <a class="dropdown-item" href="#tab3Id">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#tab4Id">Action</a>
-            </div>
-        </li>
-        <li class="nav-item" role="presentation">
-            <a href="#tab5Id" class="nav-link" data-bs-toggle="tab"
-                >Another link</a
-            >
-        </li>
-        <li class="nav-item" role="presentation">
-            <a href="#" class="nav-link disabled" data-bs-toggle="tab"
-                >Disabled</a
-            >
-        </li>
-    </ul>
-    
-    <!-- Tab panes -->
-    <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="tab1Id" role="tabpanel">
-            
-        </div>
-        <div class="tab-pane fade" id="tab2Id" role="tabpanel"></div>
-        <div class="tab-pane fade" id="tab3Id" role="tabpanel"></div>
-        <div class="tab-pane fade" id="tab4Id" role="tabpanel"></div>
-        <div class="tab-pane fade" id="tab5Id" role="tabpanel"></div>
+    <div class="common header" id="header">
+        <h1>Danielle's Travels</h1>
     </div>
-    
-    <!-- (Optional) - Place this js code after initializing bootstrap.min.js or bootstrap.bundle.min.js -->
-    <script>
-        var triggerEl = document.querySelector("#navId a");
-        bootstrap.Tab.getInstance(triggerEl).show(); // Select tab by name
-    </script>
-    
-    
+    <nav>
+        <a class="active" href="#">Travels</a>
+        <a href="gradpage.html">Grad Experience</a>
+        <a href="webapp.html">Wordle</a>
+    </nav>
+    <div class="common mainbody">
+        <br>
+        <h2>Macchu Picchu</h2>
+        <img src="../images/Peru.jpg" alt="Danielle & Carson at Macchu Picchu">
+        <br>
+        <h2>Seville, Spain</h2>
+        <img src="../images/Spain.jpg" alt="Danielle exploring Spain on her study abroad">
+        <br>
+        <h2>Paris, France</h2>
+        <img src="../images/France.jpg" alt="Danielle enjoying Sacre Coeur">
+    </div>
+    <section class="places-ranking-section" id="places">
+        <h2>Ranking the Places I've Been</h2>
+        <ol>
+          <li>
+            Spain
+            <ul>
+              <li>La Alhambra</li>
+              <li>Santander's Beaches</li>
+              <li>Segovia Castle</li>
+              <li>Madrid City Center</li>
+            </ul>
+          </li>
+          <li>Peru
+          <ul>
+            <li>Macchu Picchu</li>
+            <li>Sacsaywaman Ruins</li>
+            <li>Cusco City Center</li>
+            <li>Miraflores</li>
+          </ul>
+        </li>
+          <li>Thailand
+            <ul>
+                <li>Chiang Mai Elephant Sanctuary</li>
+                <li>Bangkok Buddhist Temples</li>
+                <li>Railay Beach</li>
+        </ul>
+          </li>
+          <li>Costa Rica
+            <ul>
+                <li>Poas Volcano</li> 
+                <li>Manuel Antonio National Park</li>
+                <li>Playa Hermosa, Jacó</li>
+        </ul>
+          </li>
+          <li>France
+            <ul>
+                <li>Eiffel Tower</li>
+                <li>Louvre Museum</li>
+                <li>Notre Dame Cathedral</li>
+            </ul>
+          </li>
+          <li>England
+            <ul>
+                <li>St. Paul's Cathedral</li>
+                <li>Cambridge</li>
+                <li>Westminster Abbey</li>
+         </ul>
+          </li>
+          <li>Mexico
+            <ul>
+                <li>Sayulita</li>
+                <li>La Cruz de Huanacaxtle</li>
+                <li>Cozumel</li>
+            </ul>
+          </li>
+        </ol>
+      </section>
+      <section class="highlight-section">
+        <h2>Highlight: Hiking the Inca Trail</h2>
+        <p>
+          One of my most unforgettable adventures was hiking the Inca Trail to Machu Picchu in Peru. Most often, tourists take a bus up from the remote town of Aguas Calientes to get to this Wonder of the World instead of hiking the 26-mile path. The journey took four days, winding through breathtaking Andean scenery, ancient ruins, and cloud forests. This experience was both a physical challenge and a chance to connect with history and nature. Here's a video showing the journey on the Inca Trail:
+        </p>
+        <div style="text-align: center;">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/xl4qCqjvuD4?si=ZR43mUqP1dUj-XSC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    </section>
+    <section class="international-travel-section">
+        <h2>International Travel</h2>
+        <p>
+            As someone who studies International Relations and has a deep love for different cultures, I believe traveling to other countries helps us become our best, most knowledgeable selves. The tourism industry is a vital part of the global economy, connecting cultures and driving development in countless regions. This visualization highlights trends in international tourism.
+        </p>
+        <div class='tableauPlaceholder' id='viz1745375994131' style='position: relative; margin: 2rem auto; max-width: 100%;'>
+          <noscript>
+            <a href='#'>
+              <img alt='Worldwide International Tourism ' src='https://public.tableau.com/static/images/Wo/WorldwideInternationalTourism/WorldwideInternationalTourism/1_rss.png' style='border: none' />
+            </a>
+          </noscript>
+          <object class='tableauViz' style='display:none;'>
+            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+            <param name='embed_code_version' value='3' />
+            <param name='site_root' value='' />
+            <param name='name' value='WorldwideInternationalTourism/WorldwideInternationalTourism' />
+            <param name='tabs' value='no' />
+            <param name='toolbar' value='yes' />
+            <param name='static_image' value='https://public.tableau.com/static/images/Wo/WorldwideInternationalTourism/WorldwideInternationalTourism/1.png' />
+            <param name='animate_transition' value='yes' />
+            <param name='display_static_image' value='yes' />
+            <param name='display_spinner' value='yes' />
+            <param name='display_overlay' value='yes' />
+            <param name='display_count' value='yes' />
+            <param name='language' value='en-US' />
+          </object>
+        </div>
+        <script type='text/javascript'>
+          var divElement = document.getElementById('viz1745375994131');
+          var vizElement = divElement.getElementsByTagName('object')[0];
+          vizElement.style.width = '100%';
+          vizElement.style.height = '700px';
+          var scriptElement = document.createElement('script');
+          scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+          vizElement.parentNode.insertBefore(scriptElement, vizElement);
+        </script>
+      </section>
+      <div class="back-to-top-button-con">
+        <a class="back-to-top-button" href="#header">Back to top</a>
+      </div>
+    <div class="common footer">Danielle's World Travels</div>
 </body>
 </html>

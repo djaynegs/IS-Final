@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wordle Clone: Public Admin & Geography Edition</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    header {
+      width: 100%;
+      background: #1abc9c;
+      color: white;
+      padding: 1.5rem 0;
+      text-align: center;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+    .game-container {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(44,62,80,0.10);
+      max-width: 420px;
+      width: 90%;
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 2rem;
+      animation: fadeIn 0.8s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .board {
+      display: grid;
+      grid-template-rows: repeat(6, 1fr);
+      gap: 0.4rem;
+      margin-bottom: 1.2rem;
+    }
+    .row {
+      display: flex;
+      gap: 0.4rem;
+      justify-content: center;
+    }
+    .cell {
+      width: 44px;
+      height: 44px;
+      border: 2px solid #bbb;
+      border-radius: 6px;
+      font-size: 2rem;
+      font-weight: 600;
+      text-align: center;
+      line-height: 44px;
+      background: #f3f6fa;
+      color: #222;
+      text-transform: uppercase;
+      transition: background 0.2s, border 0.2s, color 0.2s;
+      user-select: none;
+    }
+    .cell.correct {
+      background: #6aaa64;
+      border-color: #6aaa64;
+      color: #fff;
+    }
+    .cell.present {
+      background: #c9b458;
+      border-color: #c9b458;
+      color: #fff;
+    }
+    .cell.absent {
+      background: #787c7e;
+      border-color: #787c7e;
+      color: #fff;
+    }
+    .keyboard {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      margin-top: 1rem;
+      user-select: none;
+    }
+    .keyboard-row {
+      display: flex;
+      gap: 0.3rem;
+      justify-content: center;
+    }
+    .key {
+      background: #e0eafc;
+      border: 1px solid #bbb;
+      border-radius: 4px;
+      padding: 0.7rem 0.6rem;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #222;
+      cursor: pointer;
+      min-width: 36px;
+      text-align: center;
+      transition: background 0.2s, color 0.2s;
+    }
+    .key.correct { background: #6aaa64; color: #fff; border-color: #6aaa64;}
+    .key.present { background: #c9b458; color: #fff; border-color: #c9b458;}
+    .key.absent { background: #787c7e; color: #fff; border-color: #787c7e;}
+    .key.wide { min-width: 60px;}
+    .message {
+      min-height: 32px;
+      margin: 1rem 0 0.5rem 0;
+      font-size: 1.1rem;
+      color: #1abc9c;
+      text-align: center;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .footer {
+      margin-top: auto;
+      color: #888;
+      font-size: 0.95rem;
+      padding: 1rem 0;
+      text-align: center;
+    }
+    @media (max-width: 600px) {
+      .game-container {
+        padding: 1.2rem 0.5rem;
+      }
+      .cell {
+        width: 32px;
+        height: 32px;
+        font-size: 1.3rem;
+        line-height: 32px;
+      }
+      .key {
+        padding: 0.5rem 0.3rem;
+        font-size: 1rem;
+        min-width: 24px;
+      }
+      .key.wide { min-width: 40px;}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Wordle Clone</h1>
+    <div style="font-size:1rem; font-weight:400;">Public Admin & Geography Edition</div>
+    <nav>
+      <a href="index.html" style="color: #fff; text-decoration: underline; font-size:1rem;">&larr; Back to Travels</a>
+    </nav>
+  </header>
+  <main>
+    <div class="game-container">
+      <div class="board" id="board"></div>
+      <div class="message" id="message"></div>
+      <div class="keyboard" id="keyboard"></div>
+    </div>
+  </main>
+  <div class="footer">
+    &copy; 2025 Danielle | Inspired by Wordle | Themed for Public Admin & Geography
+  </div>
+  <script>
+    // 5-letter words related to public admin and geography
+    const WORDS = [
+      "civic", "urban", "mayor", "river", "delta", "state", "court", "counc", "voter",
+      "grant", "zonal", "metro", "rural", "lands", "roads", "parks", "audit", "census",
+      "union", "legal", "caste", "chart", "tribe", "water", "earth", "ocean", "atlas",
+      "creek", "plain", "range", "ridge", "realm", "rules", "zones", "capes", "canal",
+      "crown", "civic", "deput", "cabin", "field", "judge", "lakes", "local", "order"
+    ];
+
+    // Acceptable guesses (for demo, use same as answers, but can be expanded)
+    const ACCEPTABLE = WORDS.concat([
+      "apple", "table", "chair", "world", "money", "event", "power", "plant", "house"
+    ]);
+
+    // Game variables
+    const WORD_LENGTH = 5;
+    const MAX_GUESSES = 6;
+    let answer = "";
+    let guesses = [];
+    let currentGuess = "";
+    let gameOver = false;
+
+    // DOM elements
+    const board = document.getElementById("board");
+    const keyboard = document.getElementById("keyboard");
+    const message = document.getElementById("message");
+
+    // Keyboard layout
+    const KEYS = [
+      ["Q","W","E","R","T","Y","U","I","O","P"],
+      ["A","S","D","F","G","H","J","K","L"],
+      ["Enter","Z","X","C","V","B","N","M","Back"]
+    ];
+
+    function pickAnswer() {
+      answer = WORDS[Math.floor(Math.random() * WORDS.length)].toLowerCase();
+    }
+
+    function buildBoard() {
+      board.innerHTML = "";
+      for (let r = 0; r < MAX_GUESSES; r++) {
+        const row = document.createElement("div");
+        row.className = "row";
+        for (let c = 0; c < WORD_LENGTH; c++) {
+          const cell = document.createElement("div");
+          cell.className = "cell";
+          if (guesses[r]) {
+            cell.textContent = guesses[r][c];
+            // Color the cell
+            const color = getCellColor(guesses[r], c);
+            if (color) cell.classList.add(color);
+          } else if (r === guesses.length && currentGuess[c]) {
+            cell.textContent = currentGuess[c];
+          }
+          row.appendChild(cell);
+        }
+        board.appendChild(row);
+      }
+    }
+
+    function buildKeyboard() {
+      keyboard.innerHTML = "";
+      KEYS.forEach(rowArr => {
+        const row = document.createElement("div");
+        row.className = "keyboard-row";
+        rowArr.forEach(key => {
+          const btn = document.createElement("button");
+          btn.className = "key";
+          btn.textContent = key;
+          if (key === "Enter" || key === "Back") btn.classList.add("wide");
+          btn.onclick = () => handleKey(key);
+          // Color keys based on guesses
+          if (key.length === 1) {
+            const color = getKeyColor(key);
+            if (color) btn.classList.add(color);
+          }
+          row.appendChild(btn);
+        });
+        keyboard.appendChild(row);
+      });
+    }
+
+    function getCellColor(word, idx) {
+      if (!word) return "";
+      const letter = word[idx];
+      if (answer[idx] === letter) return "correct";
+      else if (answer.includes(letter)) {
+        // Count how many times this letter appears in answer and guess up to this index
+        const answerCount = [...answer].filter(l => l === letter).length;
+        let presentCount = 0;
+        for (let i = 0; i <= idx; i++) {
+          if (word[i] === letter && answer[i] !== letter) presentCount++;
+        }
+        if (presentCount <= answerCount) return "present";
+      }
+      return "absent";
+    }
+
+    function getKeyColor(letter) {
+      letter = letter.toLowerCase();
+      let color = "";
+      guesses.forEach(word => {
+        [...word].forEach((l, idx) => {
+          if (l === letter) {
+            if (answer[idx] === letter) color = "correct";
+            else if (answer.includes(letter) && color !== "correct") color = "present";
+            else if (color !== "correct" && color !== "present") color = "absent";
+          }
+        });
+      });
+      return color;
+    }
+
+    function handleKey(key) {
+      if (gameOver) return;
+      if (key === "Enter") {
+        submitGuess();
+      } else if (key === "Back") {
+        currentGuess = currentGuess.slice(0, -1);
+        buildBoard();
+      } else if (/^[A-Z]$/.test(key)) {
+        if (currentGuess.length < WORD_LENGTH) {
+          currentGuess += key.toLowerCase();
+          buildBoard();
+        }
+      }
+    }
+
+    function submitGuess() {
+      if (currentGuess.length !== WORD_LENGTH) {
+        showMessage("Not enough letters");
+        return;
+      }
+      if (!ACCEPTABLE.includes(currentGuess)) {
+        showMessage("Not in word list");
+        return;
+      }
+      guesses.push(currentGuess);
+      buildBoard();
+      buildKeyboard();
+      if (currentGuess === answer) {
+        showMessage("🎉 Correct! The word was " + answer.toUpperCase());
+        gameOver = true;
+        setTimeout(resetGame, 3000);
+      } else if (guesses.length === MAX_GUESSES) {
+        showMessage("❌ Out of tries! The word was " + answer.toUpperCase());
+        gameOver = true;
+        setTimeout(resetGame, 3500);
+      } else {
+        showMessage("");
+      }
+      currentGuess = "";
+    }
+
+    function showMessage(msg) {
+      message.textContent = msg;
+      message.style.color = msg.includes("Correct") ? "#6aaa64" : "#1abc9c";
+      if (msg.includes("Out of tries") || msg.includes("Correct")) {
+        message.style.color = "#c0392b";
+      }
+    }
+
+    function handlePhysicalKeyboard(e) {
+      if (gameOver) return;
+      if (e.key === "Enter") handleKey("Enter");
+      else if (e.key === "Backspace") handleKey("Back");
+      else if (/^[a-zA-Z]$/.test(e.key)) handleKey(e.key.toUpperCase());
+    }
+
+    function resetGame() {
+      guesses = [];
+      currentGuess = "";
+      gameOver = false;
+      pickAnswer();
+      buildBoard();
+      buildKeyboard();
+      showMessage("");
+    }
+
+    // Initialize game
+    pickAnswer();
+    buildBoard();
+    buildKeyboard();
+    showMessage("");
+    window.addEventListener("keydown", handlePhysicalKeyboard);
+  </script>
+</body>
+</html>

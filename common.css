@@ -1,0 +1,52 @@
+.header{
+    background-color: #1abc9c;
+    color: white;
+    height: 100px;
+    line-height: 100px;
+    width: 100vw;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    height: fit-content;
+    margin: 0 auto;
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.footer{
+    position: fixed;
+    background-color: #1abc9c;
+    color: white;
+    bottom: 0px;
+    height: 25px;
+    line-height: 25px;
+    width: 100vw;
+}
+
+nav{
+    background-color: lightgray;
+    padding: 10px;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.5;
+}
+
+nav a{
+    color: #333;
+    text-decoration: none;
+    padding: 20px;
+    font-weight: bold;
+}
+
+nav a.active {
+    color: #131313
+}
+
+nav a:hover{
+    background-color: #ccc;
+}

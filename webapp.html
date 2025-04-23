@@ -165,19 +165,16 @@
     &copy; 2025 Danielle | Inspired by Wordle | Themed for Public Admin & Geography
   </div>
   <script>
-    // 5-letter words related to public admin and geography
-    const WORDS = [
-      "civic", "urban", "mayor", "river", "delta", "state", "court", "counc", "voter",
+    // Themed answer list (public admin & geography)
+    const ANSWERS = [
+      "civic", "urban", "mayor", "river", "delta", "state", "court", "voter",
       "grant", "zonal", "metro", "rural", "lands", "roads", "parks", "audit", "census",
-      "union", "legal", "caste", "chart", "tribe", "water", "earth", "ocean", "atlas",
+      "union", "legal", "chart", "tribe", "water", "earth", "ocean", "atlas",
       "creek", "plain", "range", "ridge", "realm", "rules", "zones", "capes", "canal",
-      "crown", "civic", "deput", "cabin", "field", "judge", "lakes", "local", "order"
+      "crown", "deput", "cabin", "field", "judge", "lakes", "local", "order"
     ];
 
-    // Acceptable guesses (for demo, use same as answers, but can be expanded)
-    const ACCEPTABLE = WORDS.concat([
-      "apple", "table", "chair", "world", "money", "event", "power", "plant", "house"
-    ]);
+    let DICTIONARY = [];
 
     // Game variables
     const WORD_LENGTH = 5;
@@ -199,8 +196,28 @@
       ["Enter","Z","X","C","V","B","N","M","Back"]
     ];
 
+    // Fetch the dictionary file and initialize the game
+    fetch('wordlefile.txt')
+      .then(response => response.text())
+      .then(text => {
+        DICTIONARY = text.split('\n').map(word => word.trim().toLowerCase()).filter(word => word.length === 5);
+        initializeGame();
+      })
+      .catch(error => {
+        console.error('Error loading dictionary:', error);
+        alert('Failed to load word list!');
+      });
+
+    function initializeGame() {
+      pickAnswer();
+      buildBoard();
+      buildKeyboard();
+      showMessage("");
+      window.addEventListener("keydown", handlePhysicalKeyboard);
+    }
+
     function pickAnswer() {
-      answer = WORDS[Math.floor(Math.random() * WORDS.length)].toLowerCase();
+      answer = ANSWERS[Math.floor(Math.random() * ANSWERS.length)].toLowerCase();
     }
 
     function buildBoard() {
@@ -298,7 +315,7 @@
         showMessage("Not enough letters");
         return;
       }
-      if (!ACCEPTABLE.includes(currentGuess)) {
+      if (!DICTIONARY.includes(currentGuess)) {
         showMessage("Not in word list");
         return;
       }
@@ -343,13 +360,6 @@
       buildKeyboard();
       showMessage("");
     }
-
-    // Initialize game
-    pickAnswer();
-    buildBoard();
-    buildKeyboard();
-    showMessage("");
-    window.addEventListener("keydown", handlePhysicalKeyboard);
   </script>
 </body>
 </html>
